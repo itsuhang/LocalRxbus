@@ -4,20 +4,22 @@ import android.app.Activity;
 import android.content.Context;
 
 
-import com.suhang.localrxbus.annotation.ActivityScope;
+import com.suhang.localrxbus.annotation.BaseScope;
 
 import dagger.Module;
 import dagger.Provides;
+import io.reactivex.disposables.CompositeDisposable;
 
 /**
  * Created by 苏杭 on 2017/5/24 21:01.
  */
-@ActivityScope
+@BaseScope
 @Module
-public class ActivityModule {
+public class BaseModule {
 	private Activity mActivity;
+	private CompositeDisposable mDisposable = new CompositeDisposable();
 
-	public ActivityModule(Activity activity) {
+	public BaseModule(Activity activity) {
 		mActivity = activity;
 	}
 
@@ -25,15 +27,21 @@ public class ActivityModule {
 	 * 提供Activity,这里使用了ActivityScope域,则在此域中的mActivity对象只有一份(也就是局部单例)
 	 * @return
 	 */
-	@ActivityScope
+	@BaseScope
 	@Provides
 	Activity providerActivity() {
 		return mActivity;
 	}
 
-	@ActivityScope
+	@BaseScope
 	@Provides
 	Context providerContext() {
 		return mActivity;
+	}
+
+	@BaseScope
+	@Provides
+	CompositeDisposable providerDisposable() {
+		return mDisposable;
 	}
 }

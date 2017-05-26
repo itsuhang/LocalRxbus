@@ -5,18 +5,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.suhang.localrxbus.annotation.ActivityScope;
-import com.suhang.localrxbus.function.RxBus;
+import com.suhang.localrxbus.annotation.BaseScope;
+import com.suhang.localrxbus.function.rx.RxBus;
+import com.suhang.localrxbus.function.rx.SubstribeManager;
 
 import javax.inject.Inject;
 
 /**
  * Created by 苏杭 on 2017/5/24 21:14.
  */
-@ActivityScope
+@BaseScope
 public class MainRvAdapter extends RecyclerView.Adapter<MainRvAdapter.MyViewHolder> {
 	@Inject
-	RxBus mRxBus;
+	SubstribeManager mManager;
 	//将Adapter也注入
 	@Inject
 	public MainRvAdapter() {
@@ -36,7 +37,7 @@ public class MainRvAdapter extends RecyclerView.Adapter<MainRvAdapter.MyViewHold
 			@Override
 			public void onClick(View v) {
 				//发送事件,类型为Integer的position
-				mRxBus.post(position);
+				mManager.post(position);
 			}
 		});
 	}

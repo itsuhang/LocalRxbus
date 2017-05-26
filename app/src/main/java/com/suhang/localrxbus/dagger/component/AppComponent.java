@@ -1,7 +1,7 @@
 package com.suhang.localrxbus.dagger.component;
 
 import com.suhang.localrxbus.dagger.module.AppModule;
-import com.suhang.localrxbus.dagger.module.ActivityModule;
+import com.suhang.localrxbus.dagger.module.BaseModule;
 
 import javax.inject.Singleton;
 
@@ -15,5 +15,5 @@ import dagger.Component;
 @Component(modules = AppModule.class)
 public interface AppComponent {
 	//这里暴露子组件
-	ActivityComponent baseComponent(ActivityModule activityModule);
+	BaseComponent baseComponent(BaseModule baseModule);
 }

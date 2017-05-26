@@ -1,6 +1,6 @@
-package com.suhang.localrxbus.function;
+package com.suhang.localrxbus.function.rx;
 
-import com.suhang.localrxbus.annotation.ActivityScope;
+import com.suhang.localrxbus.annotation.BaseScope;
 
 import javax.inject.Inject;
 
@@ -9,7 +9,7 @@ import io.reactivex.processors.FlowableProcessor;
 import io.reactivex.processors.PublishProcessor;
 import io.reactivex.subscribers.SerializedSubscriber;
 //使Rxbus的作用域为Activity域,保证其在该域中,也就是Activity中保证单例(本例中作用域被限制在了Activity中,可根据情况更改)
-@ActivityScope
+@BaseScope
 public class RxBus {
     private final FlowableProcessor<Object> mBus;
     //将Rxbus注入
